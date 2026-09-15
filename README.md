@@ -18,11 +18,22 @@ VS Code/IntelliJ, o cualquier otro servidor estático.
 
 ## Configuración de la URL de la API
 
-Un solo punto de configuración: [`js/config.js`](js/config.js).
+Un solo punto de configuración: [`js/config.js`](js/config.js). Detecta automáticamente
+dónde está corriendo el front, sin necesidad de editar nada a mano según el entorno:
 
 ```js
-const API_BASE_URL = "http://localhost:8080";
+const API_BASE_URL =
+  (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+    ? "http://localhost:8080"                    // servido en local -> backend local
+    : "https://api-ferreteria-prueba-tecnica-todocode.onrender.com"; // servido en cualquier otro dominio (ej. GitHub Pages) -> backend deployado
 ```
+
+Esto permite que el mismo front funcione en dos escenarios sin tocar código:
+
+- **Local**: clonando este repo y el de la API, levantando ambos en la propia máquina
+  (con o sin Docker — ver el README de la API).
+- **[GitHub Pages](https://mdev-repos.github.io/front_ferreteria__prueba_tecnica_todocode/)**:
+  apunta directo al backend en producción, sin que quien lo abra necesite instalar nada.
 
 
 ## Estructura
