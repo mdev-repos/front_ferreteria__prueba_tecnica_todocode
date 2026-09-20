@@ -183,6 +183,10 @@ th, td {
     white-space: nowrap;
 }
 
+td[colspan] {
+    white-space: normal;
+}
+
 th {
     color: var(--color-text-muted);
     font-weight: 600;

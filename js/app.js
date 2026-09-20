@@ -64,12 +64,21 @@ function escapeHtml(text) {
 }
 
 async function loadTools() {
+    emptyState.hidden = true;
+    toolsTableBody.innerHTML = `<tr><td colspan="7">Cargando inventario… (si la API está "dormida" por inactividad, Render puede tardar hasta ~50s en despertar)</td></tr>`;
+
     try {
         const tools = await fetchAllTools();
         renderTools(tools);
     } catch (err) {
         console.error(err);
-        toolsTableBody.innerHTML = `<tr><td colspan="7">Error al conectar con la API. ¿Está corriendo el backend?</td></tr>`;
+        toolsTableBody.innerHTML = `
+            <tr><td colspan="7">
+                No se pudo conectar con la API. Si el backend está en Render y llevaba un
+                rato sin uso, puede seguir despertando — probá
+                <button type="button" id="retry-load" class="btn btn-small btn-secondary">reintentar</button>.
+            </td></tr>`;
+        document.querySelector("#retry-load")?.addEventListener("click", loadTools);
     }
 }
 
