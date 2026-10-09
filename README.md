@@ -28,12 +28,13 @@ const API_BASE_URL =
     : "https://api-ferreteria-prueba-tecnica-todocode.onrender.com"; // servido en cualquier otro dominio (ej. GitHub Pages) -> backend deployado
 ```
 
-Esto permite que el mismo front funcione en dos escenarios sin tocar código:
-
-- **Local**: clonando este repo y el de la API, levantando ambos en la propia máquina
-  (con o sin Docker — ver el README de la API).
-- **[GitHub Pages](https://mdev-repos.github.io/front_ferreteria__prueba_tecnica_todocode/)**:
-  apunta directo al backend en producción, sin que quien lo abra necesite instalar nada.
+> **Backend en la nube dado de baja.** El segundo caso del código (cualquier dominio que no
+> sea `localhost`) apunta a un despliegue que ya no está activo, así que la demo publicada
+> en GitHub Pages no tiene API a la que consultar. El front se usa **en local**: clonando
+> este repo y el de la API, y levantando la API con Docker Compose o a mano (ver el
+> [README de la API](https://github.com/mdev-repos/api_ferreteria__prueba_tecnica_todocode)).
+> Un despliegue completo y activo de punta a punta es el de
+> [Bazar](https://github.com/mdev-repos/api_bazar__ejercicio_curso_todocode).
 
 
 ## Estructura
